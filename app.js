@@ -19,6 +19,10 @@ function divide(a, b) {
     return a / b;
 }
 
+function operate(a, b) {
+    console.log("Hi!");
+}
+
 function doSomethingCool() {
     console.log("This function is temporarily out of order");
 }
