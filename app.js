@@ -1,5 +1,7 @@
 //basic operators
-function add (a, b) {
+const display = document.querySelector('[type="text"]');
+
+function add(a, b) {
     return a + b;
 }
 
@@ -19,20 +21,27 @@ function divide(a, b) {
     return a / b;
 }
 
-function operate(a, b) {
+function operate() {
     console.log("Hi!");
 }
 
-function doSomethingCool() {
-    console.log("This function is temporarily out of order");
+function parseOperationType(event) {
+    const operationType = event.target.textContent;
+    if (operationType==="+") {alert(add(1,2));}
+    else if (operationType==="-") {alert(subtract(1,2));}
+    else if (operationType==="X") {alert(multiply(1,2));}
+    else if (operationType==="/") {alert(divide(1,2));}
 }
 
 function displayInput (event) {
-    const display = document.querySelector('[type="text"]');
     const pressedButton = event.target;
     display.value += pressedButton.textContent;
 }
 
-const buttons = Array.from(document.querySelectorAll('button'));
+const numberButtons = Array.from(document.querySelectorAll('[data-button-type="number"]'));
 
-buttons.forEach((button)=>button.addEventListener('click',(e)=>displayInput(e)));
+numberButtons.forEach((button)=>button.addEventListener('click',(e)=>displayInput(e)));
+
+const operateButtons = Array.from(document.querySelectorAll('[data-button-type="operate"]'));
+
+operateButtons.forEach((button)=>button.addEventListener('click',(e)=>parseOperationType(e)));
