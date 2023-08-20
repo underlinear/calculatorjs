@@ -3,9 +3,10 @@ const display = document.querySelector('[type="text"]');
 
 let previousValue, latestValue;
 let operationType = {
-    currentOperator: '',
+    currentOperator: '=',
     recentlyUpdated: false,
 }
+let sign = '';
 
 function add(a, b) {
     return a + b;
@@ -39,10 +40,10 @@ function operate() {
 function updateOperator(event) {
     const pressedOperatorButton = event.target.textContent;
     operationType.recentlyUpdated = true;
-    if(pressedOperatorButton==='=')
+    
+    if(pressedOperatorButton==='='&&operationType.currentOperator!=='=')
     {
         operate();
-        return;
     }
     operationType.currentOperator = pressedOperatorButton;
 }
@@ -66,6 +67,15 @@ function clearAll () {
     display.value = '';
 }
 
+function invert () {
+    if(sign) {
+        sign = '';
+        display.value = display.value.substring(1);
+    }
+    else {sign = '-';}
+    display.value = sign + display.value;
+}
+
 const numberButtons = Array.from(document.querySelectorAll('[data-button-type="number"]'));
 
 numberButtons.forEach((button)=>button.addEventListener('click',(e)=>displayInput(e)));
@@ -81,4 +91,8 @@ clearRecentButton.addEventListener('click',()=>clearRecentEntry());
 const clearAllButton = document.querySelector('[data-button-type="clearall"]');
 
 clearAllButton.addEventListener('click',()=>clearAll());
+
+const invertButton = document.querySelector('[data-button-type="invertnumber"]');
+
+invertButton.addEventListener('click',()=>invert());
 
