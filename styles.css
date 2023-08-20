@@ -57,7 +57,7 @@ main #button-container {
 main #button-container button {
     font-family: 'Poppins', sans-serif;
     background-color: rgb(235, 170, 175);
-    color: white;
+    color: #D8555F;
     font-size: 32px;
     display: flex;
     justify-content: center;
