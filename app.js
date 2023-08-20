@@ -1,6 +1,6 @@
 //basic operators
 const display = document.querySelector('[type="text"]');
-let previousValue;
+let previousValue, latestValue;
 let operationType = {
     currentOperator: '',
     recentlyUpdated: false,
@@ -27,19 +27,30 @@ function divide(a, b) {
 }
 
 function operate() {
-    console.log("Hi!");
+    latestValue = +display.value;
+    console.log(operationType);
+    display.value =
+        operationType.currentOperator === '+'? add(previousValue, latestValue):
+        operationType.currentOperator === '-'? subtract(previousValue, latestValue):
+        operationType.currentOperator === '/'? divide(previousValue, latestValue):
+        multiply(previousValue, latestValue);
 }
 
 function updateOperator(event) {
-    operationType.currentOperator = event.target.textContent;
+    const pressedOperatorButton = event.target.textContent;
     operationType.recentlyUpdated = true;
-    
+    if(pressedOperatorButton==='=')
+    {
+        operate();
+        return;
+    }
+    operationType.currentOperator = pressedOperatorButton;
 }
 
 function displayInput (event) {
     if(operationType.recentlyUpdated)
     {
-        previousValue = display.value;
+        previousValue = +display.value;
         display.value = '';
         operationType.recentlyUpdated = false;
     }
