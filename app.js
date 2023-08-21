@@ -23,7 +23,10 @@ function multiply(a, b) {
 function divide(a, b) {
     if( b === 0)
     {
-        doSomethingCool();
+        const entirePage = document.querySelector('*');
+        entirePage.style.filter='none';
+        return 'Light Mode';
+        
     }
     return a / b;
 }
