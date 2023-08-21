@@ -5,6 +5,7 @@
     filter: invert(100%);
     transition: filter 1s ease;
 }
+
 body {
     background-image: url('images/background.jpeg');
     background-repeat: no-repeat;
@@ -16,6 +17,16 @@ body {
     flex-wrap: wrap;
     color: #1D1E2C;
     height: 100vh;
+}
+
+.animatedSlide {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: all 2s ease;
 }
 
 main {
