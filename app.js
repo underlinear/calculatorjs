@@ -27,7 +27,6 @@ function divide(a, b) {
         const entirePage = document.querySelector('*');
         entirePage.style.filter='none';
         return 'Light Mode';
-        
     }
     return a / b;
 }
@@ -54,23 +53,40 @@ function updateOperator(event) {
 }
 
 function displayInput (event) {
+    const pressedButton = event.target;
+    //if an operator has been recently used, the next click of number would simply erase the current output
     if(operationType.recentlyUpdated)
     {
         previousValue = +display.value;
-        display.value = '';
+        display.value = '0';
         operationType.recentlyUpdated = false;
     }
-    const pressedButton = event.target;
+    //to replace the temporary zeroes
+    if(display.value == '0' ||
+       display.value.substring(display.value.length-2) == '.0')
+    {
+        display.value=display.value.substring(0,display.value.length-1);
+    }
+    if(pressedButton.textContent == ".")
+    {
+        display.value += ".0";
+    }
+    else{
     display.value += pressedButton.textContent;
+    }
 }
 
 function clearRecentEntry () {
     //remove last char of string
     display.value = display.value.substring(0,display.value.length-1);
+    if(display.value == '')
+    {
+        display.value = "0";
+    }
 }
 
 function clearAll () {
-    display.value = '';
+    display.value = '0';
 }
 
 function invert () {
