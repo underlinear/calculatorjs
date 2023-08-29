@@ -43,11 +43,20 @@ function operate(a,b) {
 function updateOperator(event) {
     const pressedOperatorButton = event.target.textContent;
     operationType.recentlyUpdated = true;
-    
+    //get rid of easter egg output
+    if(display.value==='Light Mode')
+    {
+        display.value='0';
+    }
     if(pressedOperatorButton==='='&&operationType.currentOperator!=='=')
     {
         latestValue = +display.value;
         operate(previousValue,latestValue);
+    }
+    else if(pressedOperatorButton!=='='&&operationType.currentOperator!=='=')
+    {
+        latestValue = +display.value;
+        previousValue = operate(previousValue,latestValue);
     }
     operationType.currentOperator = pressedOperatorButton;
 }
